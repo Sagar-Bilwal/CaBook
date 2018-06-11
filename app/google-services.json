@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "428393936674",
+    "firebase_url": "https://cabook-1f314.firebaseio.com",
+    "project_id": "cabook-1f314",
+    "storage_bucket": "cabook-1f314.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428393936674:android:bc833078c3ab512d",
+        "android_client_info": {
+          "package_name": "com.example.sagar.cabook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428393936674-cu2er5s3t6ch49ipeaj67i0cpgbuiaja.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sagar.cabook",
+            "certificate_hash": "d4d7b3bad24d6b90e12b4c24dda0634a8d16f927"
+          }
+        },
+        {
+          "client_id": "428393936674-7u1jk8eq0rbc1upuhg618sogo3romden.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "428393936674-7u1jk8eq0rbc1upuhg618sogo3romden.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm4mDpRScOoPR9gdxW3A72eD4E5FZTjlk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428393936674-7u1jk8eq0rbc1upuhg618sogo3romden.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

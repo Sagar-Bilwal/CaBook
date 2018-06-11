@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CaBook</string>
+    <string name="cabook">C A B O O K</string>
+    <string name="partner">PARTNER</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="looking_for_rider_app">Looking for Rider App?</string>
+    <string name="register">Register</string>
+</resources>
