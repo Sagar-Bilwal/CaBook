@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import dmax.dialog.SpotsDialog;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                dialog.dismiss();
+                btnSignIn.setEnabled(false);
                 if(TextUtils.isEmpty(signEmail.getText().toString()))
                 {
                     Snackbar.make(constraintLayout,"Please Enter Your Email",Snackbar.LENGTH_LONG).show();
@@ -95,15 +98,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    final SpotsDialog alertDialog=new SpotsDialog(MainActivity.this);
+                    alertDialog.show();
                     firebaseAuth.signInWithEmailAndPassword(signEmail.getText().toString(),signPassword.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
+                            alertDialog.dismiss();
                             startActivity(new Intent(MainActivity.this,WelcomeScreen.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            alertDialog.dismiss();
+                            btnSignIn.setEnabled(true);
                             Snackbar.make(constraintLayout,"Failed"+e.getMessage(),Snackbar.LENGTH_LONG).show();
                         }
                     });
@@ -137,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
+                dialog.dismiss();
                 if(TextUtils.isEmpty(regEmail.getText().toString()))
                 {
                     Snackbar.make(constraintLayout,"Please Enter Your Email",Snackbar.LENGTH_LONG).show();
@@ -169,11 +178,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    final SpotsDialog alertDialog=new SpotsDialog(MainActivity.this);
+                    alertDialog.show();
                     firebaseAuth.createUserWithEmailAndPassword(regEmail.getText().toString(),regPassword.getText().toString())
                             .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult)
                                 {
+                                    alertDialog.dismiss();
                                     User user=new User();
                                     user.setEmail(regEmail.getText().toString());
                                     user.setName(regName.getText().toString());
@@ -189,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
+                                            alertDialog.dismiss();
                                             Snackbar.make(constraintLayout,"Registration Failed"+e.getMessage(),Snackbar.LENGTH_LONG).show();
                                         return;
                                         }

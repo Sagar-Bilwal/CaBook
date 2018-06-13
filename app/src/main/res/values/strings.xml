@@ -5,4 +5,5 @@
     <string name="sign_in">SIGN IN</string>
     <string name="looking_for_rider_app">Looking for Rider App?</string>
     <string name="register">Register</string>
+    <string name="title_activity_welcome_screen">Map</string>
 </resources>
