@@ -2,6 +2,7 @@ package com.example.sagar.cabook;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
@@ -54,7 +55,68 @@ public class MainActivity extends AppCompatActivity {
                 showRegisterDialog();
             }
         });
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSignInDialog();
+            }
+        });
+    }
+    MaterialEditText signEmail,signPassword;
+    private void showSignInDialog()
+    {
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setTitle("Sign In");
+        dialog.setMessage("Please use Email to Sign In");
 
+        LayoutInflater layoutInflater=LayoutInflater.from(this);
+        final View sign_in_layout=layoutInflater.inflate(R.layout.activity_sign_in,null);
+        signEmail=sign_in_layout.findViewById(R.id.signInEmail);
+        signPassword=sign_in_layout.findViewById(R.id.signInPassword);
+        dialog.setView(sign_in_layout);
+        dialog.setPositiveButton("Sign In", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                if(TextUtils.isEmpty(signEmail.getText().toString()))
+                {
+                    Snackbar.make(constraintLayout,"Please Enter Your Email",Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+                else if(TextUtils.isEmpty(signPassword.getText().toString()))
+                {
+                    Snackbar.make(constraintLayout,"Please Enter the Password",Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+                else if(signPassword.getText().toString().length()<8)
+                {
+                    Snackbar.make(constraintLayout,"The Password is too Short",Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+                else
+                {
+                    firebaseAuth.signInWithEmailAndPassword(signEmail.getText().toString(),signPassword.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            startActivity(new Intent(MainActivity.this,WelcomeScreen.class));
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Snackbar.make(constraintLayout,"Failed"+e.getMessage(),Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     MaterialEditText regEmail,regPassword,regName,regPhoneNo;
@@ -77,32 +139,32 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(TextUtils.isEmpty(regEmail.getText().toString()))
                 {
-                    Snackbar.make(constraintLayout,"Please Enter Your Email",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(constraintLayout,"Please Enter Your Email",Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 else if(TextUtils.isEmpty(regPassword.getText().toString()))
                 {
-                    Snackbar.make(constraintLayout,"Please Enter the Password",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(constraintLayout,"Please Enter the Password",Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 else if(TextUtils.isEmpty(regName.getText().toString()))
                 {
-                    Snackbar.make(constraintLayout,"Please Enter Your Name",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(constraintLayout,"Please Enter Your Name",Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 else if(TextUtils.isEmpty(regPhoneNo.getText().toString()))
                 {
-                    Snackbar.make(constraintLayout,"Please Enter Your Phone No.",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(constraintLayout,"Please Enter Your Phone No.",Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 else if(regPassword.getText().toString().length()<8)
                 {
-                    Snackbar.make(constraintLayout,"The Password is too Short",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(constraintLayout,"The Password is too Short",Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 else if(regPhoneNo.getText().toString().length()!=10)
                 {
-                    Snackbar.make(constraintLayout,"Please Enter Correct Phone No.",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(constraintLayout,"Please Enter Correct Phone No.",Snackbar.LENGTH_LONG).show();
                     return;
                 }
                 else
@@ -121,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                                     users.child(firebaseAuth.getCurrentUser().getUid()).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Snackbar.make(constraintLayout,"Registration Successful",Snackbar.LENGTH_SHORT).show();
+                                            Snackbar.make(constraintLayout,"Registration Successful",Snackbar.LENGTH_LONG).show();
                                             return;
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {

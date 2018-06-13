@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    apps:cardElevation="10dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/signInEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="22sp"
+            apps:layout_constraintEnd_toEndOf="parent"
+            apps:layout_constraintStart_toStartOf="parent"
+            apps:layout_constraintTop_toTopOf="parent"
+            apps:met_baseColor="@color/colorPrimary"
+            apps:met_floatingLabel="highlight"
+            apps:met_primaryColor="@color/colorPrimary"
+            apps:met_singleLineEllipsis="true" />
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/signInPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="3dp"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="22sp"
+            apps:layout_constraintEnd_toEndOf="@+id/signInEmail"
+            apps:layout_constraintStart_toStartOf="@+id/signInEmail"
+            apps:layout_constraintTop_toBottomOf="@+id/signInEmail"
+            apps:met_baseColor="@color/colorPrimary"
+            apps:met_floatingLabel="highlight"
+            apps:met_primaryColor="@color/colorPrimary"
+            apps:met_singleLineEllipsis="true" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
